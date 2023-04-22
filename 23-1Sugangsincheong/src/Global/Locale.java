@@ -52,13 +52,16 @@ public class Locale {
 		public final static String DEPARTMENT = "학과 코드를 ";
 		public final static String ALREADY_EXIST = "이미 신청한 강좌입니다.";
 		public final static String SUCCESS = "정상적으로 신청했습니다.";
+		public final static String ASK_CANCEL = "강좌를 수강 취소하시겠습니까? (1)Y (2)N";
+		public final static String CANCEL = "수강 취소할 강의 아이디를 입력해주세요: ";
 	}
 	
 	public final static class MIRIDAMGI {
 		public final static String SINCHEONG = "수강 신청할 강의 아이디를 입력해주세요: ";
 		public final static String ALREADY_EXIST = "이미 담은 강좌입니다.";
 		public final static String SUCCESS = "정상적으로 담았습니다.";
-		public final static String ASK_SINCHEONG= "강좌를 수강 신청하시겠습니까? (1)Y (2)N";
+		public final static String ASK_SINCHEONG= "(1)수강 신청 (2)미리담기 취소";
+		public final static String CANCEL = "미리담기 취소할 강의 아이디를 입력해주세요: ";
 	}
 	
 	

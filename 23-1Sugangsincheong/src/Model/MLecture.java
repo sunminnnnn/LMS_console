@@ -59,7 +59,7 @@ public class MLecture {
 		File[] fileList = path.listFiles();
 
 		for (File file : fileList) {
-			Vector<VLecture> indices = readAll(file.getName());
+			Vector<VLecture> indices = readAll(Global.Locale.FILE.DATA + file.getName());
 			for (VLecture vLecture : indices) {
 				if (vLecture.getId().equals(id)) {
 					return vLecture;
@@ -109,7 +109,7 @@ public class MLecture {
 			if (file.isDirectory()) {
 				continue;
 			}
-			Vector<VLecture> indices = readAll(file.getName());
+			Vector<VLecture> indices = readAll(Global.Locale.FILE.DATA + file.getName());
 			for (VLecture vLecture : indices) {
 				if (vLecture.getId().equals(id)) {
 					return file.getName();
@@ -121,7 +121,7 @@ public class MLecture {
 
 	public void delete(String id) {
 		String filename = getFilename(id);
-		Vector<VLecture> indicies = readAll(filename);
+		Vector<VLecture> indicies = readAll(Global.Locale.FILE.DATA + filename);//
 		for (int i = 0; i < indicies.size(); i++) {
 			if (indicies.get(i).getId().equals(id)) {
 				indicies.remove(i);
@@ -130,22 +130,22 @@ public class MLecture {
 		}
 		writeAll(filename, indicies);
 	}
-	
+
 	public void delete(VUserInfo vUserInfo, VLecture vLectures, String folder) {
-		String filename = folder +"/"+ vUserInfo.getId();
-		Vector<VLecture> indicies = readAll(filename);
-        for (int i = 0; i < indicies.size(); i++) {
-            if (indicies.get(i).getId().equals(vLectures.getId())) {
-                indicies.remove(i);
-                break;
-            }
-        }
-        writeAll(filename, indicies);
+		String filename = folder + "/" + vUserInfo.getId();
+		Vector<VLecture> indicies = readAll(Global.Locale.FILE.DATA + filename);//
+		for (int i = 0; i < indicies.size(); i++) {
+			if (indicies.get(i).getId().equals(vLectures.getId())) {
+				indicies.remove(i);
+				break;
+			}
+		}
+		writeAll(filename, indicies);
 	}
 
 	public void update(VLecture vLecture) {
 		String filename = getFilename(vLecture.getId());
-		Vector<VLecture> indicies = readAll(filename);
+		Vector<VLecture> indicies = readAll(Global.Locale.FILE.DATA + filename);//
 
 		for (VLecture lecture : indicies) {
 			if (lecture.getId().equals(vLecture.getId())) {
@@ -158,7 +158,7 @@ public class MLecture {
 
 	public void writeAll(String filename, Vector<VLecture> indices) {
 		try {
-			File file = new File(filename); //Global.Locale.FILE.DATA + 뭐임?
+			File file = new File(filename); // Global.Locale.FILE.DATA + 뭐임?
 			FileWriter fileWriter = new FileWriter(file);
 			MLecture mLecture = new MLecture();
 			for (VLecture lecture : indices) {

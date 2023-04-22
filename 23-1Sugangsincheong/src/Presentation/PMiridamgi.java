@@ -78,6 +78,16 @@ public class PMiridamgi {
 					break;
 				}
 			}
+		} else if (command.equals("2")) {
+			System.out.println(Global.Locale.MIRIDAMGI.CANCEL);
+			String id = this.scanner.next();
+
+			for (VLecture vLecture : indicies) {
+				if (vLecture.getId().equals(id)) {
+					this.delete(vUserInfo, vLecture, Global.Locale.FILE.MIRIDAMGI);
+					break;
+				}
+			}
 		}
 	}
 }

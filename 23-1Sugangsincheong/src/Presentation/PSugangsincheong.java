@@ -35,8 +35,8 @@ public class PSugangsincheong {
 				String departmentFileName = this.pDepartment.show(collegeFileName + Global.Locale.FILE.TXT,
 						Global.Locale.SUGANGSINCHEONG.DEPARTMENT);
 				if (departmentFileName != null) {
-					VLecture oLecture = this.pLecture.show(departmentFileName + Global.Locale.FILE.TXT);
-					return oLecture;
+					VLecture vLecture = this.pLecture.show(departmentFileName + Global.Locale.FILE.TXT);
+					return vLecture;
 				}
 			}
 		}
@@ -70,6 +70,26 @@ public class PSugangsincheong {
 	}
 
 	public void show(VUserInfo vUserInfo) {
-		
+		Vector<VLecture> indicies = this.read(vUserInfo, Global.Locale.FILE.SINCHEONG);
+		for (VLecture vLecture : indicies) {
+			System.out.println(vLecture.getId() + " " + vLecture.getName());
+		}
+		System.out.println(Global.Locale.SUGANGSINCHEONG.ASK_CANCEL);
+		String command = scanner.next();
+		if (command.equals("1")) {
+			System.out.println(Global.Locale.SUGANGSINCHEONG.CANCEL);
+			String id = this.scanner.next();
+
+			for (VLecture vLecture : indicies) {
+				if (vLecture.getId().equals(id)) {
+					this.delete(vUserInfo, vLecture, Global.Locale.FILE.SINCHEONG);
+					break;
+				}
+			}
+		}
+	}
+	
+	public void delete(VUserInfo vUserInfo, VLecture vLecture, String folder) {
+		this.cLecture.delete(vUserInfo, vLecture, folder);
 	}
 }
