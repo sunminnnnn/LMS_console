@@ -42,6 +42,7 @@ public class Locale {
 		public final static String SINCHEONG = "account/Sincheong";
 		public final static String MIRIDAMGI = "account/Miridamgi";
 		public final static String ACCOUNT = "account/account";
+		public final static String TEMP_ACCOUNT = "account/temp";
 		public final static String DDATA = "./data/";
 	}
 	

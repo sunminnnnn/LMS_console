@@ -13,7 +13,6 @@ import Controller.CJoin;
 import Controller.CLogin;
 import Controller.CUserInfo;
 import Mail.MailSender;
-import Main.Main;
 import ValueObject.VAccount;
 import ValueObject.VEMail;
 import ValueObject.VUserInfo;
@@ -91,13 +90,12 @@ public class PUserInfo {
 
 			if (cUserInfo.ExistUserByEmailAndId(vEMail, ID)) {
 				VUserInfo vUserInfo = cUserInfo.getUserByEmail(vEMail);
-				
+
 				// 여기서 임시비밀번호로 바꿈
 				String tempPassword = getRamdomPassword(10);
 				CLogin cLogin = new CLogin();
-				vUserInfo = cLogin.tempPassWord(ID, Main.SHA256(tempPassword));
-				System.out.println("PUserInfo:" + vUserInfo.getPassword());
-				
+				vUserInfo = cLogin.tempPassWord(ID, tempPassword);
+
 				mailSender.sendEmailToFindPwd(vUserInfo);
 				System.out.println("해당 이메일로 임시 비밀번호가 발송되었습니다.");
 			} else {

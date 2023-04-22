@@ -18,12 +18,12 @@ public class VLecture {
 		this.number = mLecture.getNumber();
 	}
 
-	public void update(VLecture oLecture) {
-		this.id = oLecture.getId();
-		this.name = oLecture.getName();
-		this.professor = oLecture.getProfessor();
-		this.grade = oLecture.getGrade();
-		this.number = oLecture.getNumber();
+	public void update(VLecture vLecture) {
+		this.id = vLecture.getId();
+		this.name = vLecture.getName();
+		this.professor = vLecture.getProfessor();
+		this.grade = vLecture.getGrade();
+		this.number = vLecture.getNumber();
 	}
 
 	public VLecture() {

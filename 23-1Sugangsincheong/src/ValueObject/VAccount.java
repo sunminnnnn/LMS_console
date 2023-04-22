@@ -21,6 +21,15 @@ public class VAccount {
 		this.department = mJoin.getDepartment();
 		this.eMail = mJoin.getEMail();
 	}
+	
+	public void update(VAccount vAccount) {
+		this.id = vAccount.getId();
+		this.password = vAccount.getPassword();
+		this.name = vAccount.getName();
+		this.address = vAccount.getAddress();
+		this.department = vAccount.getDepartment();
+		this.eMail = vAccount.getEMail();
+	}
 
 	public String getAddress() {
 		return address;

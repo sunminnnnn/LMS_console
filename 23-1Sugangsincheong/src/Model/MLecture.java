@@ -36,7 +36,7 @@ public class MLecture {
 	public Vector<VLecture> readAll(String fileName) {
 		Vector<VLecture> indices = new Vector<VLecture>();
 		try {
-			Scanner scanner = new Scanner(new File(Global.Locale.FILE.DATA + fileName));
+			Scanner scanner = new Scanner(new File(fileName));
 
 			while (this.read(scanner)) {
 				if (id.length() < 4) {
@@ -130,6 +130,18 @@ public class MLecture {
 		}
 		writeAll(filename, indicies);
 	}
+	
+	public void delete(VUserInfo vUserInfo, VLecture vLectures, String folder) {
+		String filename = folder +"/"+ vUserInfo.getId();
+		Vector<VLecture> indicies = readAll(filename);
+        for (int i = 0; i < indicies.size(); i++) {
+            if (indicies.get(i).getId().equals(vLectures.getId())) {
+                indicies.remove(i);
+                break;
+            }
+        }
+        writeAll(filename, indicies);
+	}
 
 	public void update(VLecture vLecture) {
 		String filename = getFilename(vLecture.getId());
@@ -146,7 +158,7 @@ public class MLecture {
 
 	public void writeAll(String filename, Vector<VLecture> indices) {
 		try {
-			File file = new File(Global.Locale.FILE.DATA + filename);
+			File file = new File(filename); //Global.Locale.FILE.DATA + 뭐임?
 			FileWriter fileWriter = new FileWriter(file);
 			MLecture mLecture = new MLecture();
 			for (VLecture lecture : indices) {

@@ -42,6 +42,10 @@ public class PJoin {
 		String department = scanner.next();
 		vAccount.setDepartment(department);
 		
+		System.out.println("이메일:");
+		String eMail = scanner.next();
+		vAccount.setEMail(eMail);
+		
 		this.cJoin.saveHwewon(vAccount);
 		System.out.println("등록이 완료되었습니다.");
 	}

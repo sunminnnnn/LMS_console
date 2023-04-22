@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.Vector;
 
+import Main.Main;
 import ValueObject.VAccount;
 import ValueObject.VEMail;
 import ValueObject.VLogin;
@@ -14,6 +15,7 @@ import ValueObject.VUserInfo;
 
 public class MAccount {
 	private MJoin mJoin;
+	private String oldPassword;
 
 	public VUserInfo login(VLogin vLogin) throws FileNotFoundException {
 		VUserInfo vUserInfo = null;
@@ -29,8 +31,6 @@ public class MAccount {
 					vUserInfo.setName(tokens[2]);
 					vUserInfo.setDepartment(tokens[4]);
 					vUserInfo.setEMail(tokens[5]);
-					// tokens[2]의 주소가 vUserInfo의 name으로 들어감. 이름 String 자체가 카피되는 것이 아님.
-					// primitive value가 아니므로
 					break;
 				}
 			}
@@ -49,10 +49,6 @@ public class MAccount {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-
-	public void delete(VAccount vAccount) {
-
 	}
 
 	public Vector<VAccount> readAll() {
@@ -78,6 +74,13 @@ public class MAccount {
 		return null;
 	}
 
+	public void appendAccountFile(String id, String password, String name, String address, String department, String email) throws IOException {
+	    FileWriter fw = new FileWriter(Global.Locale.FILE.ACCOUNT, true);
+	    fw.write(id + " " + password + " " + name + " " + address + " " + department + " " + email + "\n");
+	    fw.close();
+	}
+
+
 	public VUserInfo tempPassWord(String ID, String tempPassword) throws FileNotFoundException {
 		/*
 		 * 아이디 입력받은 걸로 VAccount 불러서 tempPW로 비밀번호 수정, 그리고 다시 새로운 비밀번호로 수정할 수 있게 함 <- 이
@@ -92,6 +95,8 @@ public class MAccount {
 			String[] tokens = line.split(" ");
 
 			if (ID.equals(tokens[0])) {
+				// System.out.println(this.read(scanner));
+
 				vAccount = new VAccount();
 				vAccount.setId(tokens[0]);
 				vAccount.setPassword(tempPassword);
@@ -107,11 +112,15 @@ public class MAccount {
 				vUserInfo.setDepartment(tokens[4]);
 				vUserInfo.setEMail(tokens[5]);
 
-				save(vAccount);
+				try {
+					appendAccountFile(tokens[0], Main.SHA256(tempPassword), tokens[2], tokens[3], tokens[4], tokens[5]);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				break;
 			}
 		}
-		System.out.println("MAccount:" + vUserInfo.getPassword());
 		return vUserInfo;
 	}
 

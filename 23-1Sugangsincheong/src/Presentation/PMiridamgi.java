@@ -26,6 +26,7 @@ public class PMiridamgi {
 				System.out.println(Global.Locale.MIRIDAMGI.SUCCESS);
 			} else if (folder.equals(Global.Locale.FILE.SINCHEONG)) {
 				this.cLecture.save(vUserInfo, vLecture, folder);
+				this.delete(vUserInfo, vLecture, Global.Locale.FILE.MIRIDAMGI);
 				System.out.println(Global.Locale.SUGANGSINCHEONG.SUCCESS);
 			}
 		}
@@ -34,6 +35,10 @@ public class PMiridamgi {
 
 	public void delete(String id) {
 		this.cLecture.delete(id);
+	}
+	
+	public void delete(VUserInfo vUserInfo, VLecture vLecture, String folder) {
+		this.cLecture.delete(vUserInfo, vLecture, folder);
 	}
 
 	private boolean check(VUserInfo vUserInfo, VLecture vLecture, String folder) {

@@ -22,10 +22,9 @@ public class PLecture {
 
 		Vector<VLecture> indices = cLecture.readAll(Global.Locale.FILE.DATA + fileName);
 
-		for (VLecture oLecture : indices) {
-
-			System.out.println(oLecture.getId() + " " + oLecture.getName() + " " + oLecture.getProfessor() + " "
-					+ oLecture.getGrade());
+		for (VLecture vLecture : indices) {
+			System.out.println(vLecture.getId() + " " + vLecture.getName() + " " + vLecture.getProfessor() + " "
+					+ vLecture.getGrade());
 		}
 
 		String id = this.scanner.next();

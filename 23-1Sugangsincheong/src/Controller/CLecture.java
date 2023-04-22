@@ -34,4 +34,8 @@ public class CLecture {
 	public void delete(String id) {
 		this.mLecture.delete(id);
 	}
+	
+	public void delete(VUserInfo vUserInfo, VLecture vLecture, String folder) {
+		this.mLecture.delete(vUserInfo, vLecture, folder);
+	}
 }
