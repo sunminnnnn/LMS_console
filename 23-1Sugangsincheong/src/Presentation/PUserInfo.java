@@ -42,12 +42,12 @@ public class PUserInfo {
 			boolean isValidEmail = false;
 			String eMail = "";
 			while (!isValidEmail) {
-				System.out.println("이메일을 입력하세요: ");
+				System.out.println(Global.Locale.USERINFO.ENTER_EMAIL);
 				eMail = this.scanner.next();
 				if (isEmail(eMail)) {
 					isValidEmail = true;
 				} else {
-					System.out.println("이메일 형식이 올바르지 않습니다. 다시 입력해주세요.");
+					System.out.println(Global.Locale.USERINFO.ERROR_EMAIL);
 				}
 			}
 
@@ -57,9 +57,9 @@ public class PUserInfo {
 				VUserInfo vUser = cUserInfo.getUserByEmail(vEMail);
 
 				mailSender.sendEmailToFindId(vUser);
-				System.out.println("해당 이메일로 아이디가 발송되었습니다.");
+				System.out.println(Global.Locale.USERINFO.SEND_EMAIL_ID);
 			} else {
-				System.out.println("해당 이메일로 가입된 계정이 없습니다.");
+				System.out.println(Global.Locale.USERINFO.NOT_EXIST_EMAIL);
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -74,15 +74,15 @@ public class PUserInfo {
 			boolean isValidEmail = false;
 			String eMail = "";
 			while (!isValidEmail) {
-				System.out.println("이메일을 입력하세요: ");
+				System.out.println(Global.Locale.USERINFO.ENTER_EMAIL);
 				eMail = this.scanner.next();
 				if (isEmail(eMail)) {
 					isValidEmail = true;
 				} else {
-					System.out.println("이메일 형식이 올바르지 않습니다. 다시 입력해주세요.");
+					System.out.println(Global.Locale.USERINFO.ERROR_EMAIL);
 				}
 			}
-			System.out.println("아이디를 입력하세요: ");
+			System.out.println(Global.Locale.USERINFO.ENTER_ID);
 			String ID = this.scanner.next();
 
 			VEMail vEMail = new VEMail();
@@ -94,16 +94,34 @@ public class PUserInfo {
 				// 여기서 임시비밀번호로 바꿈
 				String tempPassword = getRamdomPassword(10);
 				CLogin cLogin = new CLogin();
+				cLogin.delete(vUserInfo);
 				vUserInfo = cLogin.tempPassWord(ID, tempPassword);
 
 				mailSender.sendEmailToFindPwd(vUserInfo);
-				System.out.println("해당 이메일로 임시 비밀번호가 발송되었습니다.");
+				System.out.println(Global.Locale.USERINFO.SEND_EMAIL_PASSWORD);
 			} else {
-				System.out.println("해당 아이디로 가입된 계정이 없습니다.");
+				System.out.println(Global.Locale.USERINFO.ERROR_EMAIL);
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void changePassword() { // 로그인 후에
+		try {
+			System.out.println("현재 비밀번호를 입력하세요: ");
+			String nowPassword = this.scanner.next();
+			VUserInfo vUserInfo = cUserInfo.getUserByPassword(nowPassword);
+			System.out.println("변경할 비밀번호를 입력하세요: ");
+			String tempPassword = this.scanner.next();
+			CLogin cLogin = new CLogin();
+			cLogin.delete(vUserInfo);
+			vUserInfo = cLogin.changePassword(nowPassword, tempPassword);
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

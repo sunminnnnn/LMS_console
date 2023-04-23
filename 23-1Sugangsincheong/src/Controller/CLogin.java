@@ -21,4 +21,12 @@ public class CLogin { // 암호화, 성적 평균 내기
 	public VUserInfo tempPassWord(String ID, String tempPassword) throws FileNotFoundException {
 		return this.mAccount.tempPassWord(ID, tempPassword);
 	}
+	
+	public void delete(VUserInfo vUserInfo) {
+		this.mAccount.delete(vUserInfo);
+	}
+
+	public VUserInfo changePassword(String nowPassword, String tempPassword) throws FileNotFoundException {
+		return this.mAccount.changePassword(nowPassword, tempPassword);
+	}
 }

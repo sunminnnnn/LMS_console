@@ -21,13 +21,24 @@ public class MLecture {
 	public MLecture() {
 	}
 
+	/*
+	 * issue - 학과랑 강좌랑 구분을 못 하니까 manage가 안 됨 --> " "로 split한 줄의 length가 5 이하면
+	 * continue --> 해결!!!
+	 */
+
 	public boolean read(Scanner scanner) {
-		if (scanner.hasNext()) {
-			this.id = scanner.next();
-			this.name = scanner.next();
-			this.professor = scanner.next();
-			this.grade = scanner.next();
-			this.number = scanner.next();
+		while (scanner.hasNext()) {
+			String line = scanner.nextLine();
+			String[] tokens = line.split(" ");
+
+			if (tokens.length < 5) {
+				continue;
+			}
+			this.id = tokens[0];
+			this.name = tokens[1];
+			this.professor = tokens[2];
+			this.grade = tokens[3];
+			this.number = tokens[4];
 			return true;
 		}
 		return false;
@@ -39,9 +50,6 @@ public class MLecture {
 			Scanner scanner = new Scanner(new File(fileName));
 
 			while (this.read(scanner)) {
-				if (id.length() < 4) {
-					continue;
-				}
 				VLecture vLecture = new VLecture();
 				vLecture.set(this);
 				indices.add(vLecture);
@@ -120,7 +128,7 @@ public class MLecture {
 	}
 
 	public void delete(String id) {
-		String filename = getFilename(id);
+		String filename = this.getFilename(id);
 		Vector<VLecture> indicies = readAll(Global.Locale.FILE.DATA + filename);//
 		for (int i = 0; i < indicies.size(); i++) {
 			if (indicies.get(i).getId().equals(id)) {
@@ -128,12 +136,12 @@ public class MLecture {
 				break;
 			}
 		}
-		writeAll(filename, indicies);
+		writeAll(Global.Locale.FILE.DATA + filename, indicies);
 	}
 
 	public void delete(VUserInfo vUserInfo, VLecture vLectures, String folder) {
 		String filename = folder + "/" + vUserInfo.getId();
-		Vector<VLecture> indicies = readAll(Global.Locale.FILE.DATA + filename);//
+		Vector<VLecture> indicies = readAll(filename);//
 		for (int i = 0; i < indicies.size(); i++) {
 			if (indicies.get(i).getId().equals(vLectures.getId())) {
 				indicies.remove(i);
@@ -153,16 +161,16 @@ public class MLecture {
 				break;
 			}
 		}
-		writeAll(filename, indicies);
+		writeAll(Global.Locale.FILE.DATA + filename, indicies);
 	}
 
 	public void writeAll(String filename, Vector<VLecture> indices) {
 		try {
 			File file = new File(filename); // Global.Locale.FILE.DATA + 뭐임?
 			FileWriter fileWriter = new FileWriter(file);
-			MLecture mLecture = new MLecture();
+			//MLecture mLecture = new MLecture();
 			for (VLecture lecture : indices) {
-				mLecture.save(fileWriter, lecture);
+				this.save(fileWriter, lecture);
 			}
 			fileWriter.close();
 		} catch (IOException e) {

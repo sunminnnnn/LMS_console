@@ -1,5 +1,6 @@
 package ValueObject;
 
+import Model.MAccount;
 import Model.MJoin;
 
 public class VUserInfo {
@@ -9,6 +10,31 @@ public class VUserInfo {
 	private String address;
 	private String department;
 	private String eMail;
+
+	public void set(MAccount mAccount) {
+		this.id = mAccount.getId();
+		this.password = mAccount.getPassword();
+		this.name = mAccount.getName();
+		this.address = mAccount.getAddress();
+		this.department = mAccount.getDepartment();
+		this.eMail = mAccount.getEMail();
+	}
+	
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String geteMail() {
+		return eMail;
+	}
+
+	public void seteMail(String eMail) {
+		this.eMail = eMail;
+	}
 
 	public void set(MJoin mJoin) {
 		this.id = mJoin.getId();

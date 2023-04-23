@@ -27,4 +27,8 @@ public class CUserInfo {
 	public boolean ExistUserByEmailAndId(VEMail vEMail, String userId) throws FileNotFoundException {
 		return mAccount.ExistUserByEmailAndId(vEMail, userId);
 	}
+
+	public VUserInfo getUserByPassword(String nowPassword) throws FileNotFoundException {
+		return mAccount.getUserByPassword(nowPassword);
+	}
 }

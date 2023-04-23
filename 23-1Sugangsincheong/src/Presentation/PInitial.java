@@ -66,7 +66,7 @@ public class PInitial {
 					}
 				}
 			} else {
-				System.out.println("(1)아이디 찾기 (2)비밀번호 변경");
+				System.out.println(Global.Locale.INITIAL.MENU4);
 				String command4 = this.scanner.next();
 				switch (command4) {
 				case "1":
