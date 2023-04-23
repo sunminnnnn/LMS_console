@@ -60,6 +60,9 @@ public class PInitial {
 						this.pSugangsincheong.show(vUserInfo);
 						break;
 					case "4":
+						this.pUserInfo.changePassword();
+						break;
+					case "5":
 						System.out.println(Global.Locale.INITIAL.EXIT);
 						System.exit(0);
 						break;

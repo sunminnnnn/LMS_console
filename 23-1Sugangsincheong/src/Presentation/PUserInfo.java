@@ -94,7 +94,6 @@ public class PUserInfo {
 				// 여기서 임시비밀번호로 바꿈
 				String tempPassword = getRamdomPassword(10);
 				CLogin cLogin = new CLogin();
-				cLogin.delete(vUserInfo);
 				vUserInfo = cLogin.tempPassWord(ID, tempPassword);
 
 				mailSender.sendEmailToFindPwd(vUserInfo);
@@ -113,13 +112,13 @@ public class PUserInfo {
 		try {
 			System.out.println("현재 비밀번호를 입력하세요: ");
 			String nowPassword = this.scanner.next();
-			VUserInfo vUserInfo = cUserInfo.getUserByPassword(nowPassword);
 			System.out.println("변경할 비밀번호를 입력하세요: ");
 			String tempPassword = this.scanner.next();
+
+			VUserInfo vUserInfo = cUserInfo.getUserByPassword(nowPassword);
 			CLogin cLogin = new CLogin();
-			cLogin.delete(vUserInfo);
 			vUserInfo = cLogin.changePassword(nowPassword, tempPassword);
-			
+
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

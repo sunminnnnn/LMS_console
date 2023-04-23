@@ -229,10 +229,6 @@ public class MAccount {
 		return vUserInfo;
 	}
 
-	public void updatePassWord(String ID, String newPassword) throws FileNotFoundException {
-
-	}
-
 	public boolean ExistUserByEmail(VEMail vEMail) throws FileNotFoundException {
 		// TODO Auto-generated method stub
 		Scanner scanner = new Scanner(new File(Global.Locale.FILE.ACCOUNT));
@@ -253,6 +249,7 @@ public class MAccount {
 		while (scanner.hasNext()) {
 			String line = scanner.nextLine();
 			String[] tokens = line.split(" ");
+			
 			if (vEMail.getEMail().equals(tokens[5])) {
 				vUserInfo = new VUserInfo();
 				vUserInfo.setId(tokens[0]);
@@ -272,7 +269,7 @@ public class MAccount {
 			String line = scanner.nextLine();
 			String[] tokens = line.split(" ");
 			
-			if (nowPassword.equals(tokens[1])) {
+			if (Main.SHA256(nowPassword).equals(tokens[1])) {
 				vUserInfo = new VUserInfo();
 				vUserInfo.setId(tokens[0]);
 				vUserInfo.setName(tokens[2]);
@@ -293,7 +290,7 @@ public class MAccount {
 			String line = scanner.nextLine();
 			String[] tokens = line.split(" ");
 
-			if (nowPassword.equals(tokens[1])) {
+			if (Main.SHA256(nowPassword).equals(tokens[1])) {
 				// System.out.println(this.read(scanner));
 
 				vAccount = new VAccount();

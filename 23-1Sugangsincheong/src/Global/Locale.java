@@ -31,7 +31,7 @@ public class Locale {
 	public final static class INITIAL {
 		public final static String MENU_INPUT = "메뉴 번호를 입력해주세요.\n";
 		public final static String MENU1 = "(1)로그인 (2)회원가입 (3)강좌 관리 (4)회원 목록";
-		public final static String MENU2 = "(1)강좌 선택 (2)장바구니 (3)신청 목록 (4)나가기";
+		public final static String MENU2 = "(1)강좌 선택 (2)장바구니 (3)신청 목록 (4)비밀번호 변경 (5)나가기";
 		public final static String MENU3 = "(1)미리담기 (2)수강 신청";
 		public final static String MENU4 = "(1)아이디 찾기 (2)비밀번호 변경";
 		public final static String EXIT = "수강신청 프로그램을 종료합니다.";
