@@ -11,6 +11,9 @@ public class Locale {
 		public final static String NOT_EXIST_EMAIL = "해당 이메일로 가입된 계정이 없습니다.";
 		public final static String ENTER_ID = "아이디를 입력하세요: ";
 		public final static String SEND_EMAIL_PASSWORD = "해당 이메일로 임시 비밀번호가 발송되었습니다.";
+		public final static String ENTER_NOWPASSWORD = "현재 비밀번호를 입력하세요: ";
+		public final static String ENTER_TEMPPASSWORD = "변경할 비밀번호를 입력하세요: ";
+		public final static String FIN_PASSWORD_CHANGE = "변경이 완료되었습니다.";
 	}
 
 	public final static class LECTURE {
@@ -35,6 +38,17 @@ public class Locale {
 		public final static String MENU3 = "(1)미리담기 (2)수강 신청";
 		public final static String MENU4 = "(1)아이디 찾기 (2)비밀번호 변경";
 		public final static String EXIT = "수강신청 프로그램을 종료합니다.";
+	}
+	
+	public final static class JOIN {
+		public final static String START_JOIN = "회원등록을 시작합니다.";
+		public final static String ID = "아이디: ";
+		public final static String PASSWORD = "비밀번호: ";
+		public final static String NAME = "이름: ";
+		public final static String ADDRESS = "주소: ";
+		public final static String DEPARTMENT = "학과: ";
+		public final static String EMAIL = "이메일: ";
+		public final static String FIN_JOIN = "등록이 완료되었습니다.";
 	}
 
 	public final static class LOGIN {

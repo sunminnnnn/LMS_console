@@ -110,15 +110,15 @@ public class PUserInfo {
 
 	public void changePassword() { // 로그인 후에
 		try {
-			System.out.println("현재 비밀번호를 입력하세요: ");
+			System.out.println(Global.Locale.USERINFO.ENTER_NOWPASSWORD);
 			String nowPassword = this.scanner.next();
-			System.out.println("변경할 비밀번호를 입력하세요: ");
+			System.out.println(Global.Locale.USERINFO.ENTER_TEMPPASSWORD);
 			String tempPassword = this.scanner.next();
 
 			VUserInfo vUserInfo = cUserInfo.getUserByPassword(nowPassword);
 			CLogin cLogin = new CLogin();
 			vUserInfo = cLogin.changePassword(nowPassword, tempPassword);
-
+			System.out.println(Global.Locale.USERINFO.FIN_PASSWORD_CHANGE);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -18,35 +18,35 @@ public class PJoin {
 
 	public void run() {
 
-		System.out.println("<회원등록>");
+		System.out.println(Global.Locale.JOIN.START_JOIN);
 		VAccount vAccount = new VAccount();
 
-		System.out.println("아이디:");
+		System.out.println(Global.Locale.JOIN.ID);
 		String id = scanner.next();
 		vAccount.setId(id);
 
-		System.out.println("비밀번호:");
+		System.out.println(Global.Locale.JOIN.PASSWORD);
 		String password = scanner.next();
 		String password_encrypt = Main.SHA256(password);
 		vAccount.setPassword(password_encrypt);
 
-		System.out.println("이름:");
+		System.out.println(Global.Locale.JOIN.NAME);
 		String name = scanner.next();
 		vAccount.setName(name);
 
-		System.out.println("주소:");
+		System.out.println(Global.Locale.JOIN.ADDRESS);
 		String address = scanner.next();
 		vAccount.setAddress(address);
 
-		System.out.println("학과:");
+		System.out.println(Global.Locale.JOIN.DEPARTMENT);
 		String department = scanner.next();
 		vAccount.setDepartment(department);
 		
-		System.out.println("이메일:");
+		System.out.println(Global.Locale.JOIN.EMAIL);
 		String eMail = scanner.next();
 		vAccount.setEMail(eMail);
 		
 		this.cJoin.saveHwewon(vAccount);
-		System.out.println("등록이 완료되었습니다.");
+		System.out.println(Global.Locale.JOIN.FIN_JOIN);
 	}
 }
