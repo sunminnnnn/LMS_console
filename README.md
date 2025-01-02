@@ -1,2 +1,2 @@
-# Procedure_Programming
-절차적사고와 프로그래밍
+# LMS_console
+콘솔을 통한 학습 관리 시스템 개발
